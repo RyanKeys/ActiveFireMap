@@ -1,0 +1,5 @@
+hidden.json
+node_modules/
+.vscode/
+api.json
+data/

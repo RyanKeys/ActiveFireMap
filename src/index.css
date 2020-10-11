@@ -1,0 +1,13 @@
+body {
+  background-color: RGBA(2,16,25,1);
+  margin: 0;
+  font-family: 'Fira Sans', sans-serif;
+
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
