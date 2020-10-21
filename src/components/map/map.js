@@ -6,7 +6,8 @@ import key from "../../hidden.json";
 import mapStyles from "../../mapStyles";
 import fireData from "../../app.json";
 import { Search } from "./Search";
-import LoadScreen from "./LoadScreen"
+import LoadScreen from "./LoadScreen";
+import axios from "axios";
 //desired API libraries and options
 const libraries = ["places"];
 const options = {
@@ -75,13 +76,11 @@ export default function Map() {
     height: "100vh",
     width: "100%",
   };
-  
 
-
-  if (loadError) return "Error Loading Data."
+  if (loadError) return "Error Loading Data.";
   // TODO animation in place of Loading Fire Data.
-  if (!isLoaded) return <LoadScreen/>;
-  
+  if (!isLoaded) return <LoadScreen />;
+
   ////////////////////////////Map Creation/////////////////////////
 
   //Creates Map HTML
@@ -93,8 +92,7 @@ export default function Map() {
       <GoogleMap
         mapContainerStyle={mapStyles}
         zoom={8}
-        center={{lat: 37.468319,
-          lng: -122.143936}}
+        center={{ lat: 37.468319, lng: -122.143936 }}
         options={options}
         onLoad={onMapLoad}
       >
