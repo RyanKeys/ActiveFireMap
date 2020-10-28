@@ -4,7 +4,6 @@ import { GoogleMap, useLoadScript, Marker } from "@react-google-maps/api";
 import "@reach/combobox/styles.css";
 import key from "../../hidden.json";
 import mapStyles from "../../mapStyles";
-import fireData from "../../app.json";
 import { Search } from "./Search";
 import LoadScreen from "./LoadScreen";
 
@@ -16,7 +15,7 @@ const options = {
 };
 
 //Map Component
-export default function Map() {
+export default function Map(props) {
   //////////////////INIT VARS//////////////////////
   //Loads Map w/API key and desired libraries
   const { isLoaded, loadError } = useLoadScript({
@@ -42,6 +41,7 @@ export default function Map() {
     legend.style.height = "auto";
     const button = document.getElementById("legendButton");
     button.style.visibility = "visible";
+    button.style.position = "relative";
     populateSearch(fire);
   };
 
@@ -66,7 +66,6 @@ export default function Map() {
       <h3 id=fireTitle>Bright T 31:<br/>${fire.bright_t31}</h3>
       <h3 id=fireTitle>Satellite:<br/>${fire.frp}</h3>
       <h3 id=fireTitle>Satellite:<br/>${fire.satellite}</h3>
-
       <br/>
     </div>`;
   };
@@ -96,7 +95,7 @@ export default function Map() {
         onLoad={onMapLoad}
       >
         {/* Takes every JSON object in fireData and maps them to a Marker on the map */}
-        {fireData.map((fire) => (
+        {props.fires.map((fire) => (
           <Marker
             // TODO change key to lat lng and date.
             key={fire.id}

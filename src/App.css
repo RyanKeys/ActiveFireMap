@@ -1,8 +1,7 @@
 .App {
   text-align: center;
-  background-color: RGBA(2,16,25,.9);
+  background-color: RGBA(2, 16, 25, 0.9);
 }
-
 
 #fireTitle {
   color: whitesmoke;
@@ -16,24 +15,26 @@
 #search {
   list-style-type: none;
   position: absolute;
+  transition: height 3s;
   z-index: 4;
   padding-top: 0;
   padding-bottom: 0;
   overflow: visible;
-  background-image: linear-gradient(to bottom right,RGBA(25,25,25,.9),RGBA(2,16,25,.9));
-  }
+  background-image: linear-gradient(
+    to bottom right,
+    RGBA(25, 25, 25, 0.9),
+    RGBA(2, 16, 25, 0.9)
+  );
+}
 
-  
-  #searchBar {
-    margin-left: 10%;
-    margin-right: 10%;
+#searchBar {
+  margin-left: 10%;
+  margin-right: 10%;
+}
 
-  }
-
-
-  #legendButton {
-    margin-bottom: 2em;
-  }
+#legendButton {
+  margin-bottom: 2em;
+}
 
 #searchBar {
   margin: 0;
@@ -47,26 +48,29 @@
 }
 
 #legendButton {
-  background-color:#08304b;
+  background-color: #08304b;
   font-size: 14px;
   border-radius: 4px;
   color: whitesmoke;
-  border:none;
+  border: none;
 }
 
 #legendButton:hover {
   background-color: #222;
-  outline:none;
+  outline: none;
   opacity: 0.2;
-  border:none;
-  
-
+  border: none;
 }
 
+#loadScreen {
+  margin-top: 10em;
+  position: absolute;
+  z-index: 10;
+  background-color: RGBA(2, 16, 25, 0.9);
+}
 .App-logo {
   height: 40vmin;
   pointer-events: none;
-  z-index: 14;
 }
 
 @keyframes App-logo-spin {
@@ -79,15 +83,15 @@
 }
 
 input {
-  background-color: RGBA(2,16,25,.0);
-  border:none;
-  border-bottom:2px solid #333;
-  outline:none;
+  background-color: RGBA(2, 16, 25, 0);
+  border: none;
+  border-bottom: 2px solid #333;
+  outline: none;
   color: whitesmoke;
   text-align: center;
 }
 input:focus {
-  border-bottom:2px solid #333; 
+  border-bottom: 2px solid #333;
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -96,16 +100,13 @@ input:focus {
   }
 }
 
-  @media (max-width: 385px) {
+@media (max-width: 385px) {
   #search {
     padding: 0;
-    width:70vw;
+    width: 70vw;
   }
 
   #fireTitle {
     margin: 1em;
   }
-
 }
-
-

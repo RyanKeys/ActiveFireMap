@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import "./App.css";
 import Map from "./components/map/map";
-import Fake from "./components/map/Fake";
 class App extends Component {
   state = { fires: [] };
 
@@ -14,8 +13,8 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        {/* <Map value={i}/> */}
-        <Fake fires={this.state.fires} />
+        {/* assigns this.state.fires to props.fires in child component */}
+        <Map fires={this.state.fires} />
       </div>
     );
   }
