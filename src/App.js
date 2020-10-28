@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "./App.css";
 import Map from "./components/map/map";
-
+import Fake from "./components/map/Fake";
 class App extends Component {
   state = { fires: [] };
 
@@ -14,13 +14,8 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <ul>
-          {this.state.fires.map((fire) => (
-            <li key="{fire.acq_date}">{fire.latitude}</li>
-          ))}
-        </ul>
-
-        {/* <Map /> */}
+        {/* <Map value={i}/> */}
+        <Fake fires={this.state.fires} />
       </div>
     );
   }

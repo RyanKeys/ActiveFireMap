@@ -7,7 +7,7 @@ import mapStyles from "../../mapStyles";
 import fireData from "../../app.json";
 import { Search } from "./Search";
 import LoadScreen from "./LoadScreen";
-import axios from "axios";
+
 //desired API libraries and options
 const libraries = ["places"];
 const options = {
@@ -82,7 +82,6 @@ export default function Map() {
   if (!isLoaded) return <LoadScreen />;
 
   ////////////////////////////Map Creation/////////////////////////
-
   //Creates Map HTML
   return (
     <div>
