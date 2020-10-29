@@ -6,10 +6,11 @@ const express = require("express");
 const port = process.env.PORT || 8080;
 const app = express();
 
-// API endpoint that returns a  list of json objects
+// API endpoint that returns a  list of json objects as 'fires'
+//TODO change routes to pass different csv files
 app.get("/api/fires", (req, res) => {
   https.get(
-    "https://firms.modaps.eosdis.nasa.gov/data/active_fire/c6/csv/MODIS_C6_Global_24h.csv",
+    "https://firms.modaps.eosdis.nasa.gov/data/active_fire/c6/csv/MODIS_C6_USA_contiguous_and_Hawaii_24h.csv",
     (response) => {
       const file = fs.createWriteStream("global.csv");
       response.pipe(file);

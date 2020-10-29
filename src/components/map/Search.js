@@ -25,7 +25,6 @@ export function Search({ panTo }) {
       radius: 200 * 1000,
     },
   });
-  const legend = document.getElementById("search");
 
   //////////////////Search Component layout///////////////
   return (
