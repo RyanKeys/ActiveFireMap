@@ -15,6 +15,7 @@ const options = {
 var markerSize = 30;
 //Map Component
 export default function Map(props) {
+  console.log(process.env.API_KEY);
   //////////////////INIT VARS//////////////////////
   //Loads Map w/API key and desired libraries
   const { isLoaded, loadError } = useLoadScript({
