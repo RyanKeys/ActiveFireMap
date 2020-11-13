@@ -2,7 +2,6 @@ import React from "react";
 import "../../App.css";
 import { GoogleMap, useLoadScript, Marker } from "@react-google-maps/api";
 import "@reach/combobox/styles.css";
-import key from "../../hidden.json";
 import mapStyles from "../../mapStyles";
 import { Search } from "./Search";
 import LoadScreen from "./LoadScreen";
@@ -19,7 +18,7 @@ export default function Map(props) {
   //////////////////INIT VARS//////////////////////
   //Loads Map w/API key and desired libraries
   const { isLoaded, loadError } = useLoadScript({
-    googleMapsApiKey: key,
+    googleMapsApiKey: process.env.API_KEY,
     libraries,
   });
   //const to store Map coorinates in React.useRef()
