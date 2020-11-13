@@ -34,6 +34,7 @@
 
 #legendButton {
   margin-bottom: 2em;
+  z-index: 2;
 }
 
 #searchBar {
@@ -103,10 +104,33 @@ input:focus {
 @media (max-width: 385px) {
   #search {
     padding: 0;
-    width: 70vw;
+    width: 100vw;
   }
 
   #fireTitle {
     margin: 1em;
+  }
+
+  #fireTitle {
+    margin: auto;
+    height: 0%;
+  }
+}
+
+@media (max-width: 812px) {
+  #search {
+    max-height: 100vh;
+    overflow: hidden;
+  }
+
+  #fireResults {
+  }
+  #fireTitle {
+    margin: 1em;
+  }
+
+  #fireTitle {
+    margin: auto;
+    height: 0%;
   }
 }

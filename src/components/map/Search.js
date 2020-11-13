@@ -25,7 +25,6 @@ export function Search({ panTo }) {
       radius: 200 * 1000,
     },
   });
-
   //////////////////Search Component layout///////////////
   return (
     <div id="search" className="searchContainer">
@@ -34,7 +33,7 @@ export function Search({ panTo }) {
           id="searchHeader"
           style={{ textShadow: "4px 4px #111", color: "whitesmoke" }}
         >
-          Active Fires
+          Active Fire Map
         </h3>
         <div id="searchBar">
           <Combobox
@@ -80,11 +79,12 @@ export function Search({ panTo }) {
             document.getElementById("legendButton").style.visibility = "hidden";
             document.getElementById("legendButton").style.position = "absolute";
             document.getElementById("searchResults").innerHTML = "";
+            document.getElementById("search").style.overflow = "hidden";
           }}
         >
           Close
         </button>
-        <p>
+        <p style={{ margin: 0, marginTop: "1em", marginBottom: ".4em" }}>
           <a style={{ color: "#555" }} href="Https://github.com/RyanKeys">
             © Ryan Keys
           </a>

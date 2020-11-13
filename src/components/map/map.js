@@ -13,7 +13,7 @@ const options = {
   styles: mapStyles,
   disableDefaultUI: true,
 };
-
+var markerSize = 30;
 //Map Component
 export default function Map(props) {
   //////////////////INIT VARS//////////////////////
@@ -39,6 +39,7 @@ export default function Map(props) {
   const openLegend = (fire) => {
     const legend = document.getElementById("search");
     legend.style.height = "auto";
+    legend.style.overflow = "auto";
     const button = document.getElementById("legendButton");
     button.style.visibility = "visible";
     button.style.position = "relative";
@@ -115,7 +116,7 @@ export default function Map(props) {
             // Actual Marker icon (ex. fire/flag etc)
             icon={{
               url: "https://cdn140.picsart.com/268960205000211.png",
-              scaledSize: new window.google.maps.Size(30, 30),
+              scaledSize: new window.google.maps.Size(markerSize, markerSize),
               origin: new window.google.maps.Point(0, 0),
             }}
           />

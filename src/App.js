@@ -4,10 +4,18 @@ import Map from "./components/map/map";
 class App extends Component {
   //On page load grabs data from API and pushes it into {this.state.fires}
   state = { fires: [] };
-  componentDidMount() {
-    fetch("/api/fires")
-      .then((res) => res.json())
-      .then((fires) => this.setState({ fires }));
+  componentWillMount() {
+    var url = `/api${window.location.pathname}`;
+    console.log(url);
+    if (url === "/api/") {
+      fetch("/api/fires")
+        .then((res) => res.json())
+        .then((fires) => this.setState({ fires }));
+    } else if (url === "/api/usa") {
+      fetch("/api/usa")
+        .then((res) => res.json())
+        .then((fires) => this.setState({ fires }));
+    }
   }
 
   render() {
