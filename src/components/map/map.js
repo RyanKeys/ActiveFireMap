@@ -19,7 +19,7 @@ export default function Map(props) {
   //////////////////INIT VARS//////////////////////
   //Loads Map w/API key and desired libraries
   const { isLoaded, loadError } = useLoadScript({
-    googleMapsApiKey: process.env.API_KEY,
+    googleMapsApiKey: process.env.API_KEY || "ERROR: No API key!",
     libraries,
   });
   //const to store Map coorinates in React.useRef()
