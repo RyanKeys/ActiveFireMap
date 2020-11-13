@@ -6,6 +6,8 @@ import mapStyles from "../../mapStyles";
 import { Search } from "./Search";
 import LoadScreen from "./LoadScreen";
 
+const dotenv = require("dotenv");
+
 //desired API libraries and options
 const libraries = ["places"];
 const options = {
@@ -15,11 +17,15 @@ const options = {
 var markerSize = 30;
 //Map Component
 export default function Map(props) {
-  console.log(process.env.API_KEY);
+  const env = dotenv.config().parsed;
+  console.log(env);
+  const key = process.env.API_KEY;
+
+  console.log(key);
   //////////////////INIT VARS//////////////////////
   //Loads Map w/API key and desired libraries
   const { isLoaded, loadError } = useLoadScript({
-    googleMapsApiKey: process.env.API_KEY || "ERROR: No API key!",
+    googleMapsApiKey: key,
     libraries,
   });
   //const to store Map coorinates in React.useRef()

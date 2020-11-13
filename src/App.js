@@ -4,7 +4,7 @@ import Map from "./components/map/map";
 class App extends Component {
   //On page load grabs data from API and pushes it into {this.state.fires}
   state = { fires: [] };
-  componentWillMount() {
+  componentDidMount() {
     var url = `/api${window.location.pathname}`;
     console.log(url);
     if (url === "/api/") {
