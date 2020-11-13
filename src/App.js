@@ -3,6 +3,8 @@ import "./App.css";
 import Map from "./components/map/map";
 class App extends Component {
   //On page load grabs data from API and pushes it into {this.state.fires}
+
+  //TODO Add route only accessible by site to get Google API key :) c: :p
   state = { fires: [] };
   componentDidMount() {
     var url = `/api${window.location.pathname}`;
