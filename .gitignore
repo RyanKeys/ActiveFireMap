@@ -4,3 +4,4 @@ node_modules/
 api.json
 data/
 .csv
+.env
