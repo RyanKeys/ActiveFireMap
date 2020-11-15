@@ -24,10 +24,10 @@
     "wget-improved": "^3.2.1"
   },
   "scripts": {
-    "dev": "concurrently \"cd client; react-scripts start\" \"node dev.js\"",
+    "dev": "concurrently \"react-scripts start\" \"node dev.js\"",
     "build-dev": "(npm run build) & node dev.js",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build",
+    "deploy": "git add . && git commit -a -m '' && git push && git push heroku",
     "start": "node dev.js",
     "build": "react-scripts build",
     "test": "react-scripts test",

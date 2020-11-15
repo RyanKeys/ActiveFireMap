@@ -9,8 +9,6 @@ import { compareAsc } from "date-fns";
 
 const dotenv = require("dotenv");
 dotenv.config();
-const key = process.env.REACT_APP_API_KEY;
-console.log(key);
 //desired API libraries and options
 const libraries = ["places"];
 const options = {
@@ -23,7 +21,7 @@ export default function Map(props) {
   //////////////////INIT VARS//////////////////////
   //Loads Map w/API key and desired libraries
   const { isLoaded, loadError } = useLoadScript({
-    googleMapsApiKey: key,
+    googleMapsApiKey: process.env.REACT_APP_API_KEY,
     libraries,
   });
   //const to store Map coorinates in React.useRef()
