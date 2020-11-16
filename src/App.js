@@ -17,10 +17,17 @@ class App extends Component {
       fetch("/api/usa")
         .then((res) => res.json())
         .then((fires) => this.setState({ fires }));
+    } else if (url.includes("location")) {
+      console.log(url);
+      fetch(url)
+        .then((res) => res.json())
+        .then((fires) => this.setState({ fires }));
     }
   }
 
   render() {
+    console.log(this.state.fires);
+
     return (
       <div className="App">
         {/* Assigns this.state.fires to props.fires in child component */}

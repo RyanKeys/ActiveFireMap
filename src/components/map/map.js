@@ -1,11 +1,15 @@
 import React from "react";
 import "../../App.css";
-import { GoogleMap, useLoadScript, Marker } from "@react-google-maps/api";
+import {
+  GoogleMap,
+  useLoadScript,
+  Marker,
+  DistanceMatrixServiceProps,
+} from "@react-google-maps/api";
 import "@reach/combobox/styles.css";
 import mapStyles from "../../mapStyles";
 import { Search } from "./Search";
 import LoadScreen from "./LoadScreen";
-import { compareAsc } from "date-fns";
 
 const dotenv = require("dotenv");
 dotenv.config();
@@ -72,13 +76,22 @@ export default function Map(props) {
       <br/>
     </div>`;
   };
+  var urlString = window.location.pathname.toString();
+  if (urlString.includes("location")) {
+    var coordList = urlString
+      .replace("location", "")
+      .replace("//", "")
+      .split(",");
+    var newLat = Number(coordList[0]);
+    var newLng = Number(coordList[1]);
+    console.log(newLat, newLng);
+  }
 
   //Makes map fullscreen
   const mapStyles = {
     height: "100vh",
     width: "100%",
   };
-
   if (loadError) return "Error Loading Data.";
   // TODO animation in place of Loading Fire Data.
   if (!isLoaded) return <LoadScreen />;
@@ -93,7 +106,7 @@ export default function Map(props) {
       <GoogleMap
         mapContainerStyle={mapStyles}
         zoom={8}
-        center={{ lat: 37.468319, lng: -122.143936 }}
+        center={{ lat: newLat || 37.468319, lng: newLng || -122.143936 }}
         options={options}
         onLoad={onMapLoad}
       >
@@ -109,7 +122,6 @@ export default function Map(props) {
             // on marker click pan to the location of the fire using panTo();
             // Then openLegend(fire); with fire being the user's selected marker.
             onClick={async () => {
-              console.log(fire.id);
               const lat = parseFloat(fire.latitude);
               const lng = parseFloat(fire.longitude);
               panTo({ lat, lng });

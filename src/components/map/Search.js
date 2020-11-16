@@ -43,6 +43,9 @@ export function Search({ panTo }) {
               try {
                 const results = await getGeocode({ address });
                 const { lat, lng } = await getLatLng(results[0]);
+                var url = ``;
+                url = `location/${parseFloat(lat)},${parseFloat(lng)}`;
+                window.location.pathname = url;
                 panTo({ lat, lng });
               } catch (error) {}
             }}

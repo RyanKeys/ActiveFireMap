@@ -28,7 +28,8 @@
     "build-dev": "(npm run build) & node dev.js",
     "predeploy": "npm run build",
     "deploy": "git add . && git commit -a -m '' && git push && git push heroku",
-    "start": "node dev.js",
+    "start": "nodemon dev.js",
+    "react": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"

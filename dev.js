@@ -8,14 +8,10 @@ const express = require("express");
 const path = require("path");
 const port = process.env.PORT || 8080;
 const app = express();
-const key = process.env.API_KEY;
+const key = process.env.REACT_APP_API_KEY;
 // the __dirname is the current directory from where the script is running
 app.use(express.static(__dirname));
 app.use(express.static(path.join(__dirname, "build")));
-
-app.get("/api/key", (req, res) => {
-  res.send(key);
-});
 
 app.get("/", function (req, res) {
   res.sendFile(path.join(__dirname, "build", "index.html"));
@@ -60,11 +56,52 @@ app.get("/api/usa", (req, res) => {
     });
 });
 
-app.get("/usa", function (req, res) {
-  res.sendFile(path.join(__dirname, "build", "index.html"));
+app.get("/api/location/:address", (req, res) => {
+  https.get(
+    "https://firms.modaps.eosdis.nasa.gov/data/active_fire/c6/csv/MODIS_C6_USA_contiguous_and_Hawaii_24h.csv",
+    (response) => {
+      const file = fs.createWriteStream("usa.csv");
+      response.pipe(file);
+    }
+  );
+  var fires = [];
+  var fireRequests = [];
+
+  fs.createReadStream("usa.csv")
+    .pipe(csv())
+    .on("data", (fire) => {
+      fires.push(fire);
+    })
+    //On write finish, send 100 items to google Distance calculator.
+    //TODO Iterate through all items and append to list if within radius range.
+    .on("end", () => {
+      //for fire in list only take the latitude and longitdue as a string and append to fireRequests.
+      for (var i = 0; i < 100; i++) {
+        fireRequests.push(`${fires[i].latitude}:${fires[i].longitude}`);
+      }
+      //Makes a list out of all string items.
+      var fireReqStr = fireRequests.join(",");
+      //Parse commas into pipes, and colons into commas; as per google distance Matrix API.
+      //https://developers.google.com/maps/documentation/distance-matrix/start
+      fireReqStr = fireReqStr.replace(/,/g, "|");
+      fireReqStr = fireReqStr.replace(/:/g, ",");
+      //Gets user input address from variable in route/querystring.
+      var origins = req.params.address;
+      //Performs the request to the Google distance Matrix API, then pipes it into the 'data.json' file.
+      https.get(
+        `https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=${origins}&destinations=${fireReqStr}&key=${key}`,
+        (response) => {
+          response.pipe(fs.createWriteStream("data.json"));
+        }
+      );
+      //A typical response of all fire data still.
+      var withinRadius = [];
+      fs.createReadStream("data.json").on("data", (fires) => {
+        console.log(fires.toString());
+      });
+      res.json(withinRadius);
+    });
 });
-// API endpoint that returns a  list of json objects as 'fires'
-//TODO change routes to pass different csv files
 
 app.listen(port);
 
