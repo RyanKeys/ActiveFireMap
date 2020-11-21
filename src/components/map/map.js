@@ -49,6 +49,7 @@ export default function Map(props) {
     const button = document.getElementById("legendButton");
     button.style.visibility = "visible";
     button.style.position = "relative";
+    button.style.zIndex = 10;
     populateSearch(fire);
   };
 

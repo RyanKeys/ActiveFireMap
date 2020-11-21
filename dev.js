@@ -39,7 +39,7 @@ app.get("/api/fires", (req, res) => {
 
 app.get("/api/usa", (req, res) => {
   https.get(
-    "https://firms.modaps.eosdis.nasa.gov/data/active_fire/c6/csv/MODIS_C6_USA_contiguous_and_Hawaii_24h.csv",
+    "https://firms.modaps.eosdis.nasa.gov/data/active_fire/noaa-20-viirs-c2/csv/J1_VIIRS_C2_USA_contiguous_and_Hawaii_24h.csv",
     (response) => {
       const file = fs.createWriteStream("usa.csv");
       response.pipe(file);
@@ -95,11 +95,14 @@ app.get("/api/location/:address", (req, res) => {
         }
       );
       //A typical response of all fire data still.
+      //TODO Parse fires below into withinRadius[] if True.
       var withinRadius = [];
       fs.createReadStream("data.json").on("data", (fires) => {
-        console.log(fires.toString());
+        var firesJSON = JSON.parse(fires.toString())["rows"];
+        for (var i = 0; i < firesJSON.length(); i++) {}
+        console.log();
       });
-      res.json(withinRadius);
+      res.json(fires);
     });
 });
 
