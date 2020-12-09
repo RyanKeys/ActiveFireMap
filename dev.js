@@ -77,7 +77,7 @@ app.get("/api/location/:address", (req, res) => {
     //On write finish, send 100 items to google Distance calculator.
     //TODO Iterate through all items and append to list if within radius range.
     .on("end", () => {
-      //for fire in list only take the latitude and longitdue as a string and append to fireRequests.
+      //for fire in list only take the latitude and longitude as a string and append to fireRequests.
       for (var i = 0; i < 100; i++) {
         fireRequests.push(`${fires[i].latitude}:${fires[i].longitude}`);
       }
