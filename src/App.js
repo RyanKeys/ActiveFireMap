@@ -7,7 +7,7 @@ class App extends Component {
   //TODO Add route only accessible by site to get Google API key :) c: :p
   state = { fires: [] };
 
-  componentDidMount() {
+  componentWillMount() {
     var url = `/api${window.location.pathname}`;
     if (url === "/api/") {
       fetch("/api/fires")
