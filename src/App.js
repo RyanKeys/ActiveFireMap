@@ -7,22 +7,33 @@ class App extends Component {
   //TODO Add route only accessible by site to get Google API key :) c: :p
   state = { fires: [] };
 
-  componentWillMount() {
-    var url = `/api${window.location.pathname}`;
+  //Fetches Data from given route.
+  apiCaller(route) {
+    fetch(route)
+      .then((res) => res.json())
+      .then((fires) => this.setState({ fires }));
+  }
+
+  //Handles users route selection and returns their desired JSON.
+  apiHandler(url) {
+    console.log(url);
     if (url === "/api/") {
-      fetch("/api/fires")
-        .then((res) => res.json())
-        .then((fires) => this.setState({ fires }));
-    } else if (url === "/api/usa") {
-      fetch("/api/usa")
-        .then((res) => res.json())
-        .then((fires) => this.setState({ fires }));
+      this.apiCaller("/api/fires");
     } else if (url.includes("location")) {
-      console.log(url);
-      fetch(url)
-        .then((res) => res.json())
-        .then((fires) => this.setState({ fires }));
+      this.apiCaller(url);
+    } else {
+      var routes = ["/api/fires", "/api/usa"].forEach((route) => {
+        console.log(route);
+        if (url === route) {
+          this.apiCaller(route);
+        }
+      });
     }
+  }
+
+  componentDidMount() {
+    var url = `/api${window.location.pathname}`;
+    this.apiHandler(url);
   }
 
   render() {

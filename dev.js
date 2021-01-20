@@ -44,7 +44,6 @@ app.get("/api/usa", (req, res) => {
     (response) => {
       const file = fs.createWriteStream("usa.csv");
       response.pipe(file);
-      console.log();
     }
   );
   var fires = [];

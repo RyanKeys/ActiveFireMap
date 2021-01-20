@@ -19,7 +19,7 @@ const options = {
   styles: mapStyles,
   disableDefaultUI: true,
 };
-var markerSize = 30;
+var markerSize = 50;
 //Map Component
 export default function Map(props) {
   //////////////////INIT VARS//////////////////////
@@ -66,12 +66,13 @@ export default function Map(props) {
   };
   //Grabs data for user selected fire.
   const fireResultsHtml = (fire) => {
+    console.log(fire);
     return `<div id=fireResults>
       <h3 id=fireTitle>Coordinates:<br/>${fire.latitude}/${fire.longitude}</h3>
       <h3 id=fireTitle>Date Discovered:<br/>${fire.acq_date}<h3/>
-      <h3 id=fireTitle>Probability:<br/>${fire.confidence}<h3/> 
+      <h3 id=fireTitle>Time Discovered:<br/>${fire.acq_time}<h3/> 
       <h3 id=fireTitle>Scan:<br/>${fire.scan}</h3>
-      <h3 id=fireTitle>Bright T 31:<br/>${fire.bright_t31}</h3>
+      <h3 id=fireTitle>Bright T 31:<br/>${fire.bright_ti4}</h3>
       <h3 id=fireTitle>Satellite:<br/>${fire.frp}</h3>
       <h3 id=fireTitle>Satellite:<br/>${fire.satellite}</h3>
       <br/>
@@ -130,7 +131,8 @@ export default function Map(props) {
             }}
             // Actual Marker icon (ex. fire/flag etc)
             icon={{
-              url: "https://cdn140.picsart.com/268960205000211.png",
+              url:
+                "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fcdn140.picsart.com%2F291118763013211.png&f=1&nofb=1",
               scaledSize: new window.google.maps.Size(markerSize, markerSize),
               origin: new window.google.maps.Point(0, 0),
             }}
