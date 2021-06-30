@@ -88,7 +88,7 @@ export function Search({ panTo }) {
           Close
         </button>
         <p style={{ margin: 0, marginTop: "1em", marginBottom: ".4em" }}>
-          <a style={{ color: "#555" }} href="Https://github.com/RyanKeys">
+          <a style={{ color: "#555" }} href="Https://ryankeys.github.io">
             © Ryan Keys
           </a>
         </p>

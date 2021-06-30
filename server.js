@@ -107,6 +107,25 @@ app.get("/api/location/:address", (req, res) => {
     });
 });
 
-app.listen(port);
+async function doHourly(fn) {
+  let ts = Date.now();
+  // let prevHour = new Date(ts).getHours();
+  let prevHour = -1;
+  while (true) {
+    let hour = new Date(ts).getHours();
+    if (prevHour !== hour) {
+      prevHour = hour;
+      fn();
+    }
+  }
+}
 
+function getFireData() {
+  console.log("Getting Fire Data!");
+}
+
+app.listen(port);
 console.log("App is listening on port " + port);
+// doHourly(getFireData).then((res) => {
+//   console.log(res);
+// });

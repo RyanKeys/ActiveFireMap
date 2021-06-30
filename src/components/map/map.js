@@ -64,6 +64,7 @@ export default function Map(props) {
       searchResults,
     };
   };
+
   //Grabs data for user selected fire.
   const fireResultsHtml = (fire) => {
     console.log(fire);
@@ -78,6 +79,7 @@ export default function Map(props) {
       <br/>
     </div>`;
   };
+  
   var urlString = window.location.pathname.toString();
   if (urlString.includes("location")) {
     var coordList = urlString
